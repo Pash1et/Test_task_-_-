@@ -24,3 +24,8 @@ http://solved-task.ru/
 http://solved-task.ru/admin  
 login: admin  
 password: admin  
+
+### Тестовые данные карты
+number: 4242424242424242  
+date: Any future date  
+cvc: Any 3 digits
