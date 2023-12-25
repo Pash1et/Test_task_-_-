@@ -1,1 +1,1 @@
-# Test_task_-_-
+# Test_task_Simple_solutions

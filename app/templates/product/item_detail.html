@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}{{ item.name }}{% endblock %}
+
+{% block content %}
+    Name: {{ item.name }}<p>
+    Description: {{ item.description }}<p>
+    Price: {{ item.price }} {{ item.currency }}<hr>
+    <button id="buy-button">Buy</button>
+
+    <script>
+        let buyButton = document.getElementById("buy-button");
+        buyButton.addEventListener("click", () => {
+            let itemId = {{ item.id }};
+            fetch(`http://localhost:8000/buy_item/${itemId}/`)
+                .then(response => response.json())
+                .then(data => {
+                    const stripe = Stripe("pk_test_51OQDvLKBXRnCwqZMQNZ4ddtRUpR55Ep4siq8JKgYv6QEimHtRho9MJoWx81b5MpeJVNjRYCOVRqYeTzGH1gNzOB700ioCyaPR6");
+                    stripe.redirectToCheckout({sessionId: data.session_id});
+                });
+        });
+    </script>
+{% endblock %}

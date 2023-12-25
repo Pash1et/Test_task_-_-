@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+    Order detail:<p>
+        {% for item in order.item.all %}
+            {{ item.name }} - {{ item.price }}, {{ item.currency }}<p>
+        {% endfor %}
+        {% if order.discount %}
+            Скидка - {{ order.discount }}%
+        {% endif %}<hr>
+    <button id="buy-button">Buy</button>
+
+    <script>
+        let buyButton = document.getElementById("buy-button");
+        buyButton.addEventListener("click", () => {
+            let orderId = {{ order.id }};
+            fetch(`http://localhost:8000/buy_order/${orderId}/`)
+                .then(response => response.json())
+                .then(data => {
+                    const stripe = Stripe("pk_test_51OQDvLKBXRnCwqZMQNZ4ddtRUpR55Ep4siq8JKgYv6QEimHtRho9MJoWx81b5MpeJVNjRYCOVRqYeTzGH1gNzOB700ioCyaPR6");
+                    stripe.redirectToCheckout({sessionId: data.session_id});
+                });
+        });
+    </script>
+{% endblock %}
