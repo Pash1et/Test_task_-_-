@@ -16,16 +16,3 @@
 ```GET /order_detail/{order_id}``` - Информация о корзине товаров  
 ```GET /item_buy/{item_id}``` - Получение session_id для товара  
 ```GET /order_buy/{order_id}``` - Получение session_id для коризны товаров 
-
-### Адрес
-http://solved-task.ru/
-
-### Админка
-http://solved-task.ru/admin  
-login: admin  
-password: admin  
-
-### Тестовые данные карты
-number: 4242424242424242  
-date: Any future date  
-cvc: Any 3 digits
